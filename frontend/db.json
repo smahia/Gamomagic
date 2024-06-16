@@ -1,0 +1,25 @@
+{
+  "games": [
+    {
+      "game_code": 0,
+      "game_title": "Resident Evil",
+      "platform_name": "PS1",
+      "country": "Spain",
+      "languages": "Spanish"
+    },
+    {
+      "game_code": 1,
+      "game_title": "Resident Evil 2",
+      "platform_name": "PS1",
+      "country": "Spain",
+      "languages": "Spanish"
+    },
+    {
+      "game_code": 2,
+      "game_title": "Super Mario Sunshine",
+      "platform_name": "GC",
+      "country": "Europe",
+      "languages": "Spanish"
+    }
+  ]
+  }

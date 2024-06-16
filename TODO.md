@@ -1,0 +1,4 @@
+- [] Update Django and use an ORM
+- [] Minor visual improvements in the website
+- [] Update Angular 16 to 18
+- [] Replace MySQL by PostgreSQL

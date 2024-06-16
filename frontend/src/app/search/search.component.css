@@ -1,0 +1,211 @@
+.results > table {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+/* .results table > tr:nth-child(2n+0) {
+    background-color: #673BB7;
+}
+.results table > tr:nth-child(2n+1) {
+    background-color: #9c71ec;
+} */
+
+.results table tr {
+    border-bottom: 2px solid #673BB7;
+}
+
+.results table > tr > td:nth-child(1) {
+    padding: 5px;
+}
+
+.results table td {
+    padding: 10px;
+}
+
+/* For modal text */
+:is(p, h1) {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px;
+}
+.totalGames {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.sort:has(.fa-arrow-up) {
+    margin-right: 5px;
+}
+ 
+button.primary {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+  }
+
+.primary {
+    /* Remove onclick Background Color Change */
+    /* REFERENCE: https://bit.ly/2Yc95wR */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.primary:focus {
+    /* Remove onclick Border Color Change */
+    /* REFERENCE: https://bit.ly/2KFgNG7 */
+    outline: none;
+    background-color: white!important;
+}
+
+.btn {
+    border-radius: 25px;
+}
+
+.new, .insert, .modify, .closeButton, .sort, .home, 
+.deleteConfirmButton {
+    background-color: #673BB7;
+    border: none;
+    color: white;
+}
+
+.home {
+    margin-top: 20px;
+}
+
+/* :is(.new, .insert, .modify, .closeButton, .sort, .deleteConfirmButton):hover {
+    background-color: #ffffff;
+    color: #673BB7;
+    border: #673BB7 1px solid;
+} */
+
+.insert, .modify {
+    margin-right: 10px;
+}
+
+.update, .delete {
+    color: white;
+    font-size: 17px;
+    border: none;
+    background-color: transparent;
+}
+
+.update:hover, .delete:hover {
+    color: #673BB7;
+}
+
+.deleteConfirmButton {
+    margin-right: 5px;
+}
+
+.reset {
+    font-size: 15px;
+    background-color: #673BB7;
+    border: none;
+    color: white;
+    /* position: relative;
+    left: 15px;
+    top: 6px; */
+}
+
+.card {
+    padding: 40px;
+    border:none;
+    background-color: #27292A;
+    border-radius: 10px;
+}
+
+.active {
+    background: #f6f7fb !important;
+    border-color: #f6f7fb !important;
+    color: #000 !important;
+    font-size: 12px;
+}
+
+.inputs {
+    position: relative;
+}
+
+.form-control:not(.game) {
+    text-indent: 15px;
+    border: none;
+    height: 45px;
+    border-radius: 0px;
+    border-bottom: 1px solid #eee;
+    width: auto;
+}
+
+.form-control:focus:not(.game) {
+    color: #495057;
+    background-color: #fff;
+    border-color: #eee;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #26797b;
+}
+
+.inputs i {
+    position: absolute;
+    top: 14px;
+    left: 4px;
+}
+
+/* .form-select {
+    position: relative;
+    top: 6px;
+} */
+
+/** PAGINATION **/
+.mat-mdc-paginator {
+    margin-top: 30px!important;
+    color: white!important;
+    display: flex!important;
+    justify-content: center!important; 
+    align-items: center!important;
+    font-size: 15px;
+    background-color: #27292A !important;
+}
+
+::ng-deep .mat-mdc-paginator-navigation-next .mat-mdc-paginator-icon {
+    fill: white !important;
+} 
+
+::ng-deep .mat-mdc-paginator-navigation-previous .mat-mdc-paginator-icon {
+    fill: white !important;
+} 
+
+::ng-deep .mat-mdc-paginator-navigation-first .mat-mdc-paginator-icon {
+    fill: white !important;
+} 
+
+::ng-deep .mat-mdc-paginator-navigation-last .mat-mdc-paginator-icon {
+    fill: white !important;
+} 
+
+::ng-deep .mat-mdc-paginator-page-size-select .mat-mdc-select-value {
+    color: white !important;
+} 
+
+::ng-deep .mat-mdc-paginator-page-size-select .mat-mdc-select-arrow {
+    color: white !important;
+} 
+
+#modal-delete p {
+    text-align: center;
+    font-size: 20px;
+}
+
+#modal-delete p:nth-child(2) {
+    color: red;
+    font-weight: 900;
+}
+
+#modal-delete:has(.deleteConfirmButton, .closeButton) {
+    text-align: center;
+}

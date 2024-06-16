@@ -1,0 +1,142 @@
+<div class="container" id="top">
+  
+  <!-- Alert: show info about deleted games -->
+  <alert></alert>
+
+  <!-- Modal: to delete games -->
+  <jw-modal id="modal-delete">
+    <p>Are you sure you want to delete...?</p>
+    <p>{{game_modal.game_name}}</p>
+    <button class="btn deleteConfirmButton" (click)="delete();">Delete</button>
+    <button class="btn closeButton" (click)="modalService.close();">Close</button>
+  </jw-modal>
+
+  <!-- Modal: to insert/modify games -->
+  <jw-modal id="modal-insert">
+    <h1>Fill to insert a game</h1>
+    <p>Name: 
+      <input type="text" class="form-control game" placeholder="Name" [(ngModel)]="game_modal.game_name" />
+    </p>
+    <p>Platform:
+      <select class="custom-select" [(ngModel)]="game_modal.game_platform">
+        <option *ngFor="let platform of platformList" [value]="platform.game_platform">{{ platform.game_platform }}</option>
+      </select>
+    </p>
+
+    <p>Region:
+      <select class="custom-select" [(ngModel)]="game_modal.game_region">
+        <option *ngFor="let region of regionList" [value]="region.game_region">{{ region.game_region }}</option>
+      </select>
+    </p>
+    
+    <p>Language: 
+      <input type="text" class="form-control game" placeholder="Language"  [(ngModel)]="game_modal.game_language"/>
+    </p>
+
+    <button class="btn insert" (click)="insert();">Insert</button>
+    <button class="btn closeButton" (click)="modalService.close();">Close</button>
+  </jw-modal>
+
+  <jw-modal id="modal-modify">
+    <h1>Fill to modify a game</h1>
+    <p>Name: 
+      <input type="text" class="form-control game" [(ngModel)]="game_modal.game_name" />
+    </p>
+
+    <p>Platform:
+      <select class="custom-select" [(ngModel)]="game_modal.game_platform">
+        <option *ngFor="let platform of platformList" [value]="platform.game_platform">{{ platform.game_platform }}</option>
+      </select>
+    </p>
+
+    <p>Region:
+      <select class="custom-select"  [(ngModel)]="game_modal.game_region">
+        <option *ngFor="let region of regionList" [value]="region.game_region">{{ region.game_region }}</option>
+      </select>
+    </p>
+
+    <p>Language: 
+      <input type="text" class="form-control game" [(ngModel)]="game_modal.game_language"/>
+    </p>
+
+    <button class="btn modify" (click)="update();">Modify</button>
+    <button class="btn closeButton" (click)="modalService.close();">Close</button>
+  </jw-modal>
+
+  <div class="row d-flex justify-content-center mt-5 ">
+
+  <div class="col-md-8">
+      
+
+      <div class="card">
+
+        <div class="d-flex justify-content-end">
+
+            <div class="d-flex flex-row">
+
+              <button class="btn new align-items-left" (click)="openModalInsert()"><i class="fa fa-plus"></i> New</button>
+
+            </div>
+        
+        </div>
+
+        <!-- Search bar -->
+        <div class="mt-3 inputs d-flex" style="gap: 10px">
+            <button class="primary" type="button" (click)="search(filterSearch.value, filterPlatform.value)"><i class="fa fa-search"></i></button>
+            <input type="text" class="form-control rounded" (keydown.enter)="search(filterSearch.value, filterPlatform.value)" placeholder="Search Games..." #filterSearch>
+          
+            <select name="platform_list" id="platform_list" class="form-select" (keydown.enter)="search(filterSearch.value, filterPlatform.value)" #filterPlatform>
+              <option selected='All' *ngFor="let platform of platformList" [value]="platform.game_platform">{{ platform.game_platform }}</option>
+          </select>
+
+            <input class="btn reset" type="reset" value="Clear" (click)="reset()">
+        </div>
+
+        <div class="mt-3">
+          <p class="totalGames">Total games: {{filteredGameList.length}}</p>
+
+          <div class="d-flex justify-content-end">
+
+            <div class="d-flex flex-row">
+
+              <button class="btn sort align-items-left" (click)="sortUp()"><i class="fa-solid fa-arrow-up"></i></button>
+              
+              <button class="btn sort align-items-left" (click)="sortDown()"><i class="fa-solid fa-arrow-down"></i></button>
+
+            </div>
+        
+        </div>
+
+          
+
+          <div class="d-flex justify-content-center">
+            <section class="results">
+              <table>
+                <tr *ngFor="let game of filteredGameList | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                  <td>{{game.game_name}} ({{game.game_region}}) ({{game.game_language}}) ({{game.game_platform}})</td>
+                  <td><button class="btn update" (click)="openModalUpdate(game)"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                  <td><button class="btn delete" (click)="openModalDelete(game)"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+              </table>
+            </section>
+          </div>
+
+          <mat-paginator #paginator
+            [length]="filteredGameList.length"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            [pageIndex]="pageIndex"
+            [showFirstLastButtons]="true"
+            (page)="onPageChange($event)"
+            aria-label="Select page">
+          </mat-paginator>
+
+          <div class="d-flex justify-content-end">
+
+            <div class="d-flex flex-row">
+
+              <a href="search#top"><button class="btn home align-items-left"><i class="fa-solid fa-caret-up"></i></button></a>
+
+          </div>
+
+</div>

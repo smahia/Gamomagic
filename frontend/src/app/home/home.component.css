@@ -1,0 +1,52 @@
+/*
+ * Globals
+ */
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #fff;
+  background-color: #673BB7;
+  border-color: transparent;
+}
+
+.btn-secondary:active {
+  background-color: #673BB7 !important;
+}
+
+
+/*
+ * Base structure
+ */
+.cover-container {
+  background-image: url("../../assets/cover_main_page.png");
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: cover;
+}
+
+
+/*
+ * Cover
+ */
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+}
+
+.transparent {
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg,#6e51df 33.65%,#f63d68 93.38%);
+  background-clip: text;
+  color: transparent;
+  font-weight: 900;
+}

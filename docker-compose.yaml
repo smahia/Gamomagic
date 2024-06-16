@@ -1,0 +1,81 @@
+name: gamomagic
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/backend.dockerfile
+      args:
+        - BACKEND_VERSION
+        - DATABASE_HOST
+        - DATABASE_NAME
+        - DATABASE_USER
+        - DATABASE_PASSWORD
+    container_name: backend
+    restart: unless-stopped
+    hostname: backend
+    env_file: .env
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    ports:
+      - '${BACKEND_SERVICE_PORT}:5000'
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend.dockerfile
+      args:
+        - FRONTEND_VERSION
+        - BACKEND_SERVICE_HOST
+        - BACKEND_SERVICE_PORT
+    container_name: frontend
+    restart: unless-stopped
+    hostname: frontend
+    env_file: .env
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+    - PUID
+    - PGID
+    - TZ
+    ports:
+      - '${FRONTEND_SERVICE_PORT}:80'
+
+  database:
+    image: mysql:${DATABASE_VERSION}
+    container_name: database
+    restart: unless-stopped
+    hostname: database
+    env_file: .env
+    environment:
+      - PUID
+      - PGID
+      - TZ
+      - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
+      # - MYSQL_DATABASE=${DATABASE_NAME}
+      # - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      # - MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./database/scheme.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./database/backup.sql:/docker-entrypoint-initdb.d/2.sql
+      - ${DATABASE_PATH_CONFIG}:/var/lib/mysql
+    healthcheck:
+      test: [
+        "CMD",
+        "mysqladmin",
+        "ping", 
+        "-h",
+        "127.0.0.1",
+        "-u",
+        "root",
+        "--password=$$MYSQL_PASSWORD"
+      ]
+      interval: 10s
+      start_period: 30s
